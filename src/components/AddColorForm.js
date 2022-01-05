@@ -1,26 +1,22 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
 import "../App.css";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { ColorPicker, createColor } from 'material-ui-color';
-import { useInput } from "../customHooks/useInput";
+import { useInput } from "../customHooks/input-hook";
+import { useColor } from "../customHooks/colors-hook";
 
-export default function AddColorForm({ onNewColor = f => f }) {
+export default function AddColorForm() {
     const txtTitle = useRef();
     const [color, setColor] = useState(createColor("#000"));
-    // const [rating, setRating] = useState(0);
     const [rating, resetRating] = useInput(0);
+    const { addColor } = useColor();
 
     const submit = e => {
         e.preventDefault();
         const title = txtTitle.current.value;
-        // const temp = txtTitle;
-        // console.log('txtTitle.current: ', temp);
-        // console.log('title: ', title);
-        console.log("color sds: ", color);
-        onNewColor(title, color.hex, rating.value);
+        addColor(title, color.hex, rating.value);
         txtTitle.current.value = "";
-        // setRating(0);
         resetRating();
         setColor(createColor("#000"));
     }

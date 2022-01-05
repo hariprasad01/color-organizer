@@ -5,8 +5,10 @@ import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import { CardContent } from "@mui/material";
 import { grey } from "@mui/material/colors";
+import { useColor } from "../customHooks/colors-hook";
 
-export default function Color({ id, title, color, rating, onRemove = f => f, onRate = f => f }) {
+export default function Color({ id, title, color, rating }) {
+    const { rateColor, removeColor } = useColor();
     return (
         <Card style={{ margin: 16, backgroundColor: "#FAF9F9", minWidth: 300, display: "flex" }}>
             <CardContent style={{ width: "100%" }}>
@@ -14,7 +16,7 @@ export default function Color({ id, title, color, rating, onRemove = f => f, onR
                 <StarRating
                     selectedStars={rating}
                     onRate={rate => {
-                        onRate(id, rate)
+                        rateColor(id, rate)
                     }}>
                 </StarRating>
                 <div style={{
@@ -25,7 +27,7 @@ export default function Color({ id, title, color, rating, onRemove = f => f, onR
                     display: "inline-block"
                 }}></div>
                 <div style={{ textAlign: "right" }}>
-                    <Button variant="contained" style={{ marginTop: 12 }} onClick={() => onRemove(id)}>
+                    <Button variant="contained" style={{ marginTop: 12 }} onClick={() => removeColor(id)}>
                         <FaTrash />
                     </Button>
                 </div>

@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Color from './Color';
+import { useColor } from '../customHooks/colors-hook';
 
-export default function ColorList({ colors = [], onRemoveColor = f => f, onRateColor = f => f }) {
+export default function ColorList() {
+    const { colors } = useColor();
     if (!colors.length) {
         return <div>No Colors added</div>
     }
@@ -10,10 +12,6 @@ export default function ColorList({ colors = [], onRemoveColor = f => f, onRateC
             {colors.map(color =>
                 <Color
                     key={color.id}
-                    onRemove={onRemoveColor}
-                    onRate={(id, rate) => {
-                        onRateColor(id, rate)
-                    }}
                     {...color}
                 />
             )}

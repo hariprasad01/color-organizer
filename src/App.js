@@ -1,12 +1,13 @@
 import './App.css';
 import React, { useState } from 'react';
-import data from './data/colors.json';
 import ColorList from './components/ColorList';
 import AddColorForm from './components/AddColorForm';
 import { v4 } from "uuid";
 
 function App() {
 
+    // USING THE PROPS APPROACH
+    /*
     const [allColors, setAllColors] = useState(data);
 
     const addNewColor = (title, color, rating) => {
@@ -50,6 +51,17 @@ function App() {
                     } />
             </div>
         </div >
+    );
+
+    */
+
+    //USING THE CONTEXT APPROACH
+    return (
+        <div style={{ paddingLeft: 16 }}>
+            <h1>Color List</h1>
+            <AddColorForm />
+            <ColorList />
+        </div>
     );
 }
 
