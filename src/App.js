@@ -58,7 +58,7 @@ function App() {
     //USING THE CONTEXT APPROACH
     return (
         <div style={{ paddingLeft: 16 }}>
-            <h1>Color List</h1>
+            <h1>List of colours</h1>
             <AddColorForm />
             <ColorList />
         </div>
