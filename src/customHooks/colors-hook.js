@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 import colorData from '../data/colors.json';
 import { v4 } from "uuid";
-import { color } from "@mui/system";
 
 const ColorContext = createContext();
 
