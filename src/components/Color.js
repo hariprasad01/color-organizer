@@ -4,7 +4,6 @@ import { FaTrash } from "react-icons/fa";
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import { CardContent } from "@mui/material";
-import { grey } from "@mui/material/colors";
 import { useColor } from "../customHooks/colors-hook";
 
 export default function Color({ id, title, color, rating }) {

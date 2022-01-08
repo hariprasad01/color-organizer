@@ -5,7 +5,18 @@ import { v4 } from "uuid";
 const ColorContext = createContext();
 
 export function ColorProvider({ children }) {
-    const [colors, setColors] = useState(colorData);
+
+    var data = '';
+
+    if (JSON.parse(localStorage.getItem("colors")) !== undefined) {
+        data = JSON.parse(localStorage.getItem("colors"));
+    } else {
+        data = colorData;
+    }
+
+    console.log('data: ', data);
+
+    const [colors, setColors] = useState(data);
 
     const addColor = (title, color, rating) => {
         setColors(
