@@ -8,7 +8,7 @@ export function ColorProvider({ children }) {
 
     var data = '';
 
-    if (JSON.parse(localStorage.getItem("colors")) !== undefined) {
+    if (JSON.parse(localStorage.getItem("colors")) !== undefined && JSON.parse(localStorage.getItem("colors")) !== null) {
         data = JSON.parse(localStorage.getItem("colors"));
     } else {
         data = colorData;
