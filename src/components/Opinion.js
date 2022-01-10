@@ -6,7 +6,7 @@ function Opinion({ children }) {
     //This should be rerendered only when the value of children changes
     const text = useMemo(() => children.split(" "), [children]);
     return (
-        <h4>{text.join("-")}</h4>
+        <h3>{text.join("-")}</h3>
     )
 }
 
