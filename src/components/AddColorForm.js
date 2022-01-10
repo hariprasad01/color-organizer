@@ -7,9 +7,11 @@ import { useInput } from "../customHooks/input-hook";
 import { useColor } from "../customHooks/colors-hook";
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import Title from "./Title";
 
 
-export default function AddColorForm() {
+function AddColorForm() {
+    console.log('Rendering AddColorForm');
     const txtTitle = useRef();
     const [color, setColor] = useState(createColor("#000"));
     const [rating, resetRating] = useInput(0);
@@ -47,22 +49,27 @@ export default function AddColorForm() {
 
 
     return (
-        <form className="m-8" style={{ display: "flex" }} onSubmit={submit}>
-            <TextField style={{ margin: 8 }} disabled={checked} inputProps={{ maxLength: "20" }} defaultValue="Test" inputRef={txtTitle} type="text" placeholder="Title" variant="standard" label="Color title" required ></TextField>
-            <TextField style={{ margin: 8 }} disabled={checked} inputProps={{ max: 5, min: 0 }} type="number" placeholder="Rating" variant="standard" label="Rating" required {...rating}></TextField>
-            <div style={{ margin: "inherit", marginTop: "auto" }}>
-                <ColorPicker required value={color} onChange={(event) => {
-                    // console.log('event: ', event);
-                    setColor(event)
-                }}></ColorPicker>
-            </div>
-            <Button style={{ margin: 8 }} variant="contained" disabled={checked} type="submit">ADD</Button>
-            <FormControlLabel style={{ marginLeft: 250 }} control={
-                <Switch checked={checked}
-                    onChange={handleChange}
-                    inputProps={{ 'aria-label': 'controlled' }} />}
-                label="Disable input" />
-            {compliment}
-        </form>
+        <>
+            <Title>List of Colors</Title>
+            <form className="m-8" style={{ display: "flex" }} onSubmit={submit}>
+                <TextField style={{ margin: 8 }} disabled={checked} inputProps={{ maxLength: "20" }} defaultValue="Test" inputRef={txtTitle} type="text" placeholder="Title" variant="standard" label="Color title" required ></TextField>
+                <TextField style={{ margin: 8 }} disabled={checked} inputProps={{ max: 5, min: 0 }} type="number" placeholder="Rating" variant="standard" label="Rating" required {...rating}></TextField>
+                <div style={{ margin: "inherit", marginTop: "auto" }}>
+                    <ColorPicker required value={color} onChange={(event) => {
+                        // console.log('event: ', event);
+                        setColor(event)
+                    }}></ColorPicker>
+                </div>
+                <Button style={{ margin: 8 }} variant="contained" disabled={checked} type="submit">ADD</Button>
+                <FormControlLabel style={{ marginLeft: 250 }} control={
+                    <Switch checked={checked}
+                        onChange={handleChange}
+                        inputProps={{ 'aria-label': 'controlled' }} />}
+                    label="Disable input" />
+                {compliment}
+            </form>
+        </>
     )
 }
+
+export default React.memo(AddColorForm)

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Color from './Color';
 import { useColor } from '../customHooks/colors-hook';
 
-export default function ColorList() {
+function ColorList() {
     const { colors } = useColor();
 
     useEffect(() => {
@@ -23,3 +23,5 @@ export default function ColorList() {
         </div>
     );
 }
+
+export default React.memo(ColorList)

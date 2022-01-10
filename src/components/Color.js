@@ -6,7 +6,8 @@ import Card from '@mui/material/Card';
 import { CardContent } from "@mui/material";
 import { useColor } from "../customHooks/colors-hook";
 
-export default function Color({ id, title, color, rating }) {
+function Color({ id, title, color, rating }) {
+    console.log('color: ', color);
     const { rateColor, removeColor } = useColor();
     return (
         <Card style={{ margin: 16, backgroundColor: "#FAF9F9", minWidth: 300, display: "flex" }}>
@@ -30,8 +31,9 @@ export default function Color({ id, title, color, rating }) {
                         <FaTrash />
                     </Button>
                 </div>
-
             </CardContent>
         </Card>
     );
 }
+
+export default React.memo(Color);
