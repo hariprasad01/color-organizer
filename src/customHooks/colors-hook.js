@@ -14,7 +14,7 @@ export function ColorProvider({ children }) {
         data = colorData;
     }
 
-    console.log('data: ', data);
+    // console.log('data: ', data);
 
     const [colors, setColors] = useState(data);
 

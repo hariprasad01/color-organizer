@@ -1,14 +1,13 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useCallback, useMemo, useRef, useState } from "react";
 import "../App.css";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { ColorPicker, createColor } from 'material-ui-color';
 import { useInput } from "../customHooks/input-hook";
 import { useColor } from "../customHooks/colors-hook";
-import Switch from '@mui/material/Switch';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Title from "./Title";
-
+import SwitchComponent from "./SwitchComponent";
+import Opinion from "./Opinion";
 
 function AddColorForm() {
     console.log('Rendering AddColorForm');
@@ -17,10 +16,6 @@ function AddColorForm() {
     const [rating, resetRating] = useInput(0);
     const { addColor } = useColor();
     const [checked, setChecked] = useState(false);
-
-    const handleChange = () => {
-        setChecked(!checked)
-    }
 
     const submit = e => {
         e.preventDefault();
@@ -31,22 +26,19 @@ function AddColorForm() {
         setColor(createColor("#000"));
     }
 
-    //useMemo will cache the respose and if the data in the dependency array is the same then the cached value will be returned
-    const compliment = useMemo(() => {
-        if (rating.value > 0) {
-            let x = 1
-            while (x < 4000000000) {
-                x++
-            }
-            if (rating.value < 3) {
-                return <h3>This is a bad color</h3>
-            } else {
-                return <h3>This is a great color</h3>
-            }
+    var opinion = "";
+    if (rating.value > 0) {
+        if (rating.value < 3) {
+            opinion = "This is a bad color";
+        } else {
+            opinion = "This is a great color";
         }
-        return undefined;
-    }, [rating.value])
+    }
 
+    //functions are objects in js and hence just like objects, on each render the function will be diff, using the useCallback we can cache the function, similar behaviour to the useMemo
+    const handleChange = useCallback(() => {
+        setChecked(!checked)
+    }, [checked])
 
     return (
         <>
@@ -61,12 +53,8 @@ function AddColorForm() {
                     }}></ColorPicker>
                 </div>
                 <Button style={{ margin: 8 }} variant="contained" disabled={checked} type="submit">ADD</Button>
-                <FormControlLabel style={{ marginLeft: 250 }} control={
-                    <Switch checked={checked}
-                        onChange={handleChange}
-                        inputProps={{ 'aria-label': 'controlled' }} />}
-                    label="Disable input" />
-                {compliment}
+                <SwitchComponent checked={checked} handleChange={handleChange}></SwitchComponent>
+                <Opinion>{opinion}</Opinion>
             </form>
         </>
     )
