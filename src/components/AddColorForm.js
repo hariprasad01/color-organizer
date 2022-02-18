@@ -35,7 +35,8 @@ function AddColorForm() {
         }
     }
 
-    //functions are objects in js and hence just like objects, on each render the function will be diff, using the useCallback we can cache the function, similar behaviour to the useMemo
+    //functions are objects in js and hence just like objects, on each render the function will be diff, 
+    //using the useCallback we can cache the function, similar behaviour to the useMemo
     const handleChange = useCallback(() => {
         setChecked(!checked)
     }, [checked])

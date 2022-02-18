@@ -1,5 +1,6 @@
 import React, { useEffect, useLayoutEffect } from 'react';
 import Color from './Color';
+import NoColor from './NoColor';
 import { useColor } from '../customHooks/colors-hook';
 
 function ColorList() {
@@ -15,7 +16,11 @@ function ColorList() {
     })
 
     if (!colors.length) {
-        return <div>No Colors added</div>
+        return (
+            <>
+                <NoColor></NoColor>
+            </>
+        )
     }
     return (
         <div style={{ display: "flex", flexWrap: "wrap" }}>
